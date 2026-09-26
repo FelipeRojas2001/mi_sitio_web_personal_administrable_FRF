@@ -83,3 +83,5 @@ INSERT INTO contacto (correo_electronico, numero_telefono, redes_sociales, direc
     'https://www.linkedin.com/in/luis-felipe-rojas-fallas/',
     'San Isidor de El General, Costa Rica'
 );
+
+update perfil_inicio set nombre_completo = 'Luis Felipe Rojas Fallas', fotografia_de_perfil = 'assets/fotografia_perfil.jpg', descripcion_personal = 'Soy un estudiante de Ingeniería en Sistemas apasionado por la tecnología.', presentacion_corta = 'Bienvenido a mi sitio web personal.' where id = 1;
