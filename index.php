@@ -32,7 +32,7 @@
   <main class="main-wrapper">
 
     <!-- SECCIÓN 1 -->
-    <section class="section-block">
+    <section class="section-block" >
       <h2>Inicio</h2>
             <?php if (!$resultado_perfil_inicio): ?>
                 <div class="alert error">
@@ -73,6 +73,10 @@
             <h3>Habilidades</h3><p><?php echo htmlspecialchars($fila["habilidades"]); ?></p>
             <h3>Experiencia y Conocimientos</h3><p><?php echo htmlspecialchars($fila["experiencia_conocimientos"]); ?></p>
         <?php endif; ?>
+
+        <div class="btn-container">
+            <button type="button" class="btn-submit" onclick="window.location.href='pages/modificar_acerca_de_mi.php'">Actualizar Acerca de Mí</button>
+        </div>
     </section>
 
     <!-- SECCIÓN 3 -->
@@ -135,7 +139,7 @@
             <?php $fila = mysqli_fetch_assoc($resultado_contacto); ?>
             <p><strong>Correo:</strong> <?php echo htmlspecialchars($fila["correo_electronico"]); ?></p>
             <p><strong>Teléfono:</strong> <?php echo htmlspecialchars($fila["numero_telefono"]); ?></p>
-            <p><strong>Redes Sociales:</strong> <?php echo htmlspecialchars($fila["redes_sociales"]); ?></p>
+            <a href="<?php echo htmlspecialchars($fila["redes_sociales"]); ?>" target="_blank">Linkedin</a>
             <p><strong>Dirección:</strong> <?php echo htmlspecialchars($fila["direccion_fisica"]); ?></p>
         <?php endif; ?>
     </section>
