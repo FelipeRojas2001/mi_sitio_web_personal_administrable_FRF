@@ -20,42 +20,44 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi web personal</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    <h1>Mi Sitio Web Personal</h1>
-</header>
+  <main class="main-wrapper">
 
-<main> 
-    <section id="perfilInicio">
-        <h2>Inicio</h2>
-        <?php if (!$resultado_perfil_inicio): ?>
-            <div class="alert error">
-                Error al consultar: <?php echo htmlspecialchars(mysqli_error($conn)); ?>
+    <!-- SECCIÓN 1 -->
+    <section class="section-block">
+      <h2>Inicio</h2>
+            <?php if (!$resultado_perfil_inicio): ?>
+                <div class="alert error">
+                    Error al consultar: <?php echo htmlspecialchars(mysqli_error($conn)); ?>
+                </div>
+            <?php elseif (mysqli_num_rows($resultado_perfil_inicio) === 0): ?>
+                <div class="alert error">
+                    No hay información de perfil de inicio registrada.
+                </div>
+            <?php else: ?>
+                <?php $fila = mysqli_fetch_assoc($resultado_perfil_inicio); ?>
+                <h3><?php echo htmlspecialchars($fila["nombre_completo"]); ?></h3>
+                <img src="<?php echo htmlspecialchars($fila["fotografia_de_perfil"]); ?>" alt="Fotografía de perfil">
+                <p><?php echo htmlspecialchars($fila["descripcion_personal"]); ?></p>
+                <p><?php echo htmlspecialchars($fila["presentacion_corta"]); ?></p>
+            <?php endif; ?>
+
+            <div class="btn-container">
+                <button type="button" class="btn-submit" onclick="window.location.href='pages/modificar_perfil.php'">Actualizar Perfil</button>
             </div>
-        <?php elseif (mysqli_num_rows($resultado_perfil_inicio) === 0): ?>
-            <div class="alert error">
-                No hay información de perfil de inicio registrada.
-            </div>
-        <?php else: ?>
-            <?php $fila = mysqli_fetch_assoc($resultado_perfil_inicio); ?>
-            <h3><?php echo htmlspecialchars($fila["nombre_completo"]); ?></h3>
-            <img src="<?php echo htmlspecialchars($fila["fotografia_de_perfil"]); ?>" alt="Fotografía de perfil">
-            <p><?php echo htmlspecialchars($fila["descripcion_personal"]); ?></p>
-            <p><?php echo htmlspecialchars($fila["presentacion_corta"]); ?></p>
-        <?php endif; ?>
     </section>
 
-    <button><a href="pages\modificar_perfil.php">Modificar Perfil</a></button>
-
-    <section id="acercaDeMi">
-        <h2>Acerca de Mí</h2>
+    <!-- SECCIÓN 2 -->
+    <section class="section-block">
+      <h2>Acerca de Mí</h2>
         <?php if (!$resultado_acerca_de_mi): ?>
             <div class="alert error">
                 Error al consultar: <?php echo htmlspecialchars(mysqli_error($conn)); ?>
@@ -67,14 +69,15 @@
         <?php else: ?>
             <?php $fila = mysqli_fetch_assoc($resultado_acerca_de_mi); ?>
             <p><?php echo htmlspecialchars($fila["descripcion_amplia"]); ?></p>
-            <p><?php echo htmlspecialchars($fila["intereses"]); ?></p>
-            <p><?php echo htmlspecialchars($fila["habilidades"]); ?></p>
-            <p><?php echo htmlspecialchars($fila["experiencia_conocimientos"]); ?></p>
+            <h3>Intereses</h3><p><?php echo htmlspecialchars($fila["intereses"]); ?></p>
+            <h3>Habilidades</h3><p><?php echo htmlspecialchars($fila["habilidades"]); ?></p>
+            <h3>Experiencia y Conocimientos</h3><p><?php echo htmlspecialchars($fila["experiencia_conocimientos"]); ?></p>
         <?php endif; ?>
     </section>
 
-    <section id="atestados">
-        <h2>Mis Atestados</h2>
+    <!-- SECCIÓN 3 -->
+    <section class="section-block">
+      <h2>Mis Atestados</h2>
         <?php if (!$resultado_atestados): ?>
             <div class="alert error">
                 Error al consultar: <?php echo htmlspecialchars(mysqli_error($conn)); ?>
@@ -96,8 +99,9 @@
         <?php endif; ?>
     </section>
 
-    <section id="galeria">
-        <h2>Galería</h2>
+    <!-- SECCIÓN 4 -->
+    <section class="section-block">
+      <h2>Galería</h2>
         <?php if (!$resultado_galeria): ?>
             <div class="alert error">
                 Error al consultar: <?php echo htmlspecialchars(mysqli_error($conn)); ?>
@@ -116,8 +120,9 @@
         <?php endif; ?>
     </section>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
+    <!-- SECCIÓN 5 -->
+    <section class="section-block">
+      <h2>Contacto</h2>
         <?php if (!$resultado_contacto): ?>
             <div class="alert error">
                 Error al consultar: <?php echo htmlspecialchars(mysqli_error($conn)); ?>
@@ -134,7 +139,8 @@
             <p><strong>Dirección:</strong> <?php echo htmlspecialchars($fila["direccion_fisica"]); ?></p>
         <?php endif; ?>
     </section>
-</main>
+
+  </main>
 
 </body>
 </html>

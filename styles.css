@@ -1,0 +1,281 @@
+/* ==========================================
+   1. VARIABLES DE COLOR Y PARÁMETROS (Fríos y Claros)
+   ========================================== */
+:root {
+  --bg-page: #edf2f7;            /* Gris frío claro para el fondo principal */
+  --bg-card: #ffffff;            /* Blanco para bloques y contenedores */
+  --bg-subcard: #f7fafc;         /* Azul/gris muy tenue para sub-tarjetas */
+  --color-primary: #319795;       /* Menta / Azul turquesa frío */
+  --color-primary-light: #e6fffa; /* Fondo muy suave para destacados */
+  --color-title: #1a202c;         /* Azul pizarra oscuro para encabezados */
+  --color-text: #4a5568;          /* Gris azulado estándar */
+  --color-border: #e2e8f0;        /* Borde suave frío */
+  
+  /* Estados de alerta */
+  --bg-error: #fed7d7;           /* Rojo pastel muy suave */
+  --color-error: #9b2c2c;        /* Texto de error */
+  --border-error: #feb2b2;
+
+  /* Bordes redondeados y sombras */
+  --radius-card: 16px;
+  --radius-img: 12px;
+  --radius-avatar: 50%;
+  --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   2. RESETEO Y CENTRADO GLOBAL
+   ========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--color-text);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+}
+
+/* Envoltorio principal alineado al centro */
+.main-wrapper {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* Espaciado entre cada sección */
+}
+
+/* ==========================================
+   3. ESTILO BASE DE LAS 5 SECCIONES
+   ========================================== */
+.section-block {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  padding: 2.5rem 2rem;
+  text-align: center; /* Todo el texto base queda centrado */
+}
+
+/* Títulos principales de cada sección */
+.section-block h2 {
+  color: var(--color-title);
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Subrayado decorativo frío bajo cada H2 */
+.section-block h2::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 3px;
+  background-color: var(--color-primary);
+  margin: 0.4rem auto 0 auto;
+  border-radius: 2px;
+}
+
+/* Párrafos dentro de las secciones */
+.section-block p {
+  margin-bottom: 0.75rem;
+}
+
+.section-block strong {
+  color: var(--color-title);
+}
+
+/* ==========================================
+   4. ADAPTACIÓN A CADA SECCIÓN ESPECÍFICA
+   ========================================== */
+
+/* SECCIÓN 1: INICIO (Perfil) */
+.section-block h3 {
+  color: var(--color-title);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Imagen de perfil limpia y redonda */
+.section-block > img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-avatar);
+  border: 4px solid var(--bg-page);
+  box-shadow: var(--shadow-soft);
+  margin: 0.5rem auto 1.5rem auto;
+  display: block;
+}
+
+/* SECCIÓN 2: ACERCA DE MÍ */
+.section-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* SECCIÓN 3: MIS ATESTADOS */
+.atestados {
+  background-color: var(--bg-subcard);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.atestados:last-child {
+  margin-bottom: 0;
+}
+
+.atestados:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.atestados h3 {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.atestados img {
+  max-width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+  margin-top: 1rem;
+  border: 1px solid var(--color-border);
+}
+
+/* SECCIÓN 4: GALERÍA (Grid adaptativo) */
+.section-block:has(.galeria) {
+  /* Si hay imágenes de galería, organizamos en grid */
+  display: block;
+}
+
+.galeria {
+  background-color: var(--bg-subcard);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.galeria:hover {
+  transform: translateY(-3px);
+}
+
+.galeria img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+  margin-bottom: 0.75rem;
+}
+
+.galeria p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* Layout en cuadrícula para la galería si hay más de una foto */
+@media (min-width: 600px) {
+  .section-block:has(.galeria) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  
+  .section-block:has(.galeria) h2 {
+    width: 100%;
+  }
+
+  .galeria {
+    flex: 1 1 calc(50% - 1.25rem);
+    max-width: calc(50% - 0.625rem);
+    margin-bottom: 0;
+  }
+}
+
+/* SECCIÓN 5: CONTACTO */
+.section-block p strong {
+  display: inline-block;
+  min-width: 110px;
+  text-align: right;
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+}
+
+/* ==========================================
+   5. COMPONENTE DE ALERTA DE ERROR PHP
+   ========================================== */
+.alert.error {
+  background-color: var(--bg-error);
+  color: var(--color-error);
+  border: 1px solid var(--border-error);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-img);
+  font-size: 0.95rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+
+/* ==========================================
+   6. BOTON
+   ========================================== */
+
+
+/* ==========================================
+   BOTÓN BONITO AZUL (Estilo claro/frío)
+   ========================================== */
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0077b6;         /* Azul primario elegante */
+  color: #ffffff;                    /* Texto blanco puro */
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 10px;               /* Bordes redondeados modernos */
+  cursor: pointer;
+  text-decoration: none;             /* Elimina subrayado si se usa en <a> */
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2); /* Sombra azul suave */
+  transition: all 0.25s ease;        /* Transición fluida */
+  user-select: none;
+}
+
+/* Efecto al pasar el cursor (Hover) */
+.btn-submit:hover {
+  background-color: #0096c7;         /* Azul más claro/vibrante */
+  box-shadow: 0 6px 16px rgba(0, 150, 199, 0.35); /* Resplandor al pasar el cursor */
+  transform: translateY(-2px);       /* Eleva ligeramente el botón */
+}
+
+/* Efecto al hacer clic (Active) */
+.btn-submit:active {
+  transform: translateY(0);          /* Regresa a su posición original */
+  box-shadow: 0 2px 6px rgba(0, 119, 182, 0.2);
+  background-color: #03045e;         /* Azul oscuro al presionar */
+}
+
+/* Enfoque accesible para navegación por teclado */
+.btn-submit:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.4);
+}

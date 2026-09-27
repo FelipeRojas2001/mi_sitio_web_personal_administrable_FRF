@@ -1,0 +1,177 @@
+/* ==========================================
+   1. VARIABLES DE COLOR Y PARÁMETROS (Fríos y Claros)
+   ========================================== */
+:root {
+  --bg-page: #edf2f7;            /* Gris frío claro de fondo */
+  --bg-card: #ffffff;            /* Blanco para la tarjeta contenedora */
+  --bg-table-header: #f7fafc;    /* Azul/gris muy tenue para encabezados de tabla */
+  --bg-subcard: #f8fafc;         /* Fondo tenue para inputs */
+  
+  --color-primary: #319795;       /* Verde menta / Azul turquesa */
+  --color-primary-hover: #2c7a7b; /* Menta oscuro para hover */
+  --color-title: #1a202c;         /* Azul pizarra oscuro para títulos */
+  --color-text: #4a5568;          /* Gris azulado estándar */
+  --color-border: #e2e8f0;        /* Borde suave frío */
+
+  --radius-card: 16px;
+  --radius-input: 8px;
+  --radius-btn: 8px;
+  --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   2. RESETEO Y CENTRADO GLOBAL
+   ========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--color-text);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
+}
+
+/* Envoltorio principal centrado */
+.form-wrapper {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  padding: 2.5rem 2rem;
+}
+
+.form-title {
+  color: var(--color-title);
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.form-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primary);
+  margin: 0.5rem auto 0 auto;
+  border-radius: 2px;
+}
+
+/* ==========================================
+   3. ESTILOS DE LA TABLA FORMULARIO
+   ========================================== */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Mantiene la tabla fluida en móviles */
+}
+
+.sql-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.sql-table th,
+.sql-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.sql-table tr:last-child th,
+.sql-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Columna de Nombres de Campos (Títulos de columna SQL) */
+.sql-table th {
+  background-color: var(--bg-table-header);
+  color: var(--color-title);
+  font-weight: 600;
+  text-align: left;
+  width: 30%;
+  font-size: 0.95rem;
+}
+
+/* Columna de Campos de Entrada (Inputs/Textareas) */
+.sql-table td {
+  background-color: var(--bg-card);
+  width: 70%;
+}
+
+/* ==========================================
+   4. ESTILOS DE CAMPOS (INPUTS Y TEXTAREAS)
+   ========================================== */
+.sql-input,
+.sql-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background-color: var(--bg-subcard);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Textarea específico (sin Enter, flujo continuo) */
+.sql-textarea {
+  min-height: 100px;
+  resize: vertical;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.sql-input:focus,
+.sql-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(49, 151, 149, 0.15);
+}
+
+/* ==========================================
+   5. BOTÓN DE ENVÍO
+   ========================================== */
+.btn-container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.btn-submit {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
