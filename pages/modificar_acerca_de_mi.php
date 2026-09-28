@@ -10,7 +10,7 @@
     $experienciaconocimientos = $_POST['columna_4'] ?? null;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        actualizarAcercaDeMi(
+        actualizarPerfil(
             $conn,
             (string) $descripcionamplia,
             (string) $intereses,
@@ -46,7 +46,7 @@
 <body>
 
   <main class="form-wrapper">
-    <h1 class="form-title">Modificar Acerca de Mí</h1>
+    <h1 class="form-title">Modificar Perfil</h1>
 
     <!-- Formulario para enviar tus datos con PHP -->
     <form action="" method="POST" enctype="multipart/form-data">
